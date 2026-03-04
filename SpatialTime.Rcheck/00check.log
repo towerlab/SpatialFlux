@@ -1,0 +1,42 @@
+* using log directory ‘/mnt/c/Users/S223240/Documents/SpatialTime/SpatialTime.Rcheck’
+* using R version 4.1.2 (2021-11-01)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* using session charset: UTF-8
+* using option ‘--as-cran’
+* checking for file ‘SpatialTime/DESCRIPTION’ ... OK
+* this is package ‘SpatialTime’ version ‘0.0.0.9000’
+* package encoding: UTF-8
+* checking CRAN incoming feasibility ... ERROR
+Maintainer: ‘Dimitri Sokolowskei <dimitri.sokolowskei@utsouthwestern.edu>’
+
+New submission
+
+Conflicting package names (submitted: SpatialTime, existing: spatialTIME [https://CRAN.R-project.org])
+
+Conflicting package names (submitted: SpatialTime, existing: spatialTIME [CRAN archive])
+
+Version contains large components (0.0.0.9000)
+
+Strong dependencies not in mainstream repositories:
+  monocle3
+
+The build time stamp is missing.
+
+DESCRIPTION fields with placeholder content:
+  Title: what the package does (one line, title case)
+* checking package namespace information ... OK
+* checking package dependencies ... ERROR
+Packages required but not available:
+  'devtools', 'testthat', 'usethis', 'tidyverse', 'fs', 'shiny',
+  'plotly', 'umap', 'monocle3', 'pheatmap', 'readr'
+
+Package suggested but not available: ‘Seurat’
+
+The suggested packages are required for a complete check.
+Checking can be attempted without them by setting the environment
+variable _R_CHECK_FORCE_SUGGESTS_ to a false value.
+
+See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+manual.
+* DONE
+Status: 2 ERRORs

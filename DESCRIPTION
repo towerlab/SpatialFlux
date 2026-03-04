@@ -1,10 +1,9 @@
 Package: SpatialTime
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Author: Dimitri Sokolowskei <dimitri.sokolowskei@utsouthwestern.edu> 
+Maintainer: Dimitri Sokolowskei <dimitri.sokolowskei@utsouthwestern.edu> 
+Description: Spatial transcriptomics distance gradient analysis
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
