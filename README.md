@@ -1,4 +1,4 @@
-# SpatialTime
+# SpatialFlux
 #### Spatial transcriptomics distance gradient analysis
 
 <!-- badges: start -->
@@ -23,7 +23,7 @@ Please, for any questions, issues or bugs submit a [Github Issue](https://github
 
 
 ### Vignette 
-A complete vignette on how to use SpatialTime package is available [here](https://towerlab.github.io/SpatialFlux/).
+A complete vignette on how to use SpatialFlux package is available [here](https://towerlab.github.io/SpatialFlux/).
 
 ### Citation
 Sokolowskei, D., Trostle, A. J., Shah, A., & Tower, R. (2025). SpatialFlux Package (1.0). Zenodo. https://doi.org/10.5281/zenodo.14983368
