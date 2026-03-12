@@ -1,5 +1,5 @@
 ---
-title: "SpatialTime Package"
+title: "SpatialFlux Package"
 author: "Dimitri Sokolowskei, Alex Trostle, Achira Shah, Robert Tower"
 output:
   html_document:
@@ -12,34 +12,26 @@ output:
     toc: yes
     toc_depth: '3'
 ---
-# SpatialTime 
-Spatial transcriptomics (ST) enables single cell resolution gene expression analysis assessment across histology sections while preserving native tissue morphology. In this context, SpatialTime package empower users to assess differential gene expression and module score pathways across a distance gradient by establishing spatially defined reference points and calculating ST spots distances against reference spots using Euclidean distances. Thus, a distance gradient can be established allowing the evaluation of gene expression profiling based on proximity of any reference point.     
+# SpatialFlux 
+Spatial transcriptomics (ST) enables single cell resolution gene expression analysis assessment across histology sections while preserving native tissue morphology. In this context, SpatialFlux package empower users to assess differential gene expression and module score pathways across a distance gradient by establishing spatially defined reference points and calculating ST spots distances against reference spots using Euclidean distances. Thus, a distance gradient can be established allowing the evaluation of gene expression profiling based on proximity of any reference point.     
 
 ## Installation
 
 Development version install:
 ```sh
 #(install.packages("devtools")
-devtools::install_github("towerlab/SpatialTime")
+devtools::install_github("towerlab/SpatialFlux")
 ```
-## Dependencies Requirements
-The ```igraph``` package version < ```2.1.0``` are required for ```SpatialTime``` package. For instance:
 
-```sh
-library(remotes)
-
-remove.packages("igraph") # remove package if previously installed
-install_version("igraph", version = "2.0.3")
-```
 
 ## Prerequisites
-SpatialTime package requires a spatial dataset already processed and integrated. For help in generating a Seurat object, please visit [Seurat](https://satijalab.org/seurat/articles/spatial_vignette) vignette.
+SpatialFlux package requires a spatial dataset already processed and integrated. For help in generating a Seurat object, please visit [Seurat](https://satijalab.org/seurat/articles/spatial_vignette) vignette.
 
 ## Introduction 
-For this vignette tutorial, we provide a ST example dataset of mice subjected to tibia osteotomy obtained from [Rios et al., 2024](https://insight.jci.org/articles/view/176802#BIBL). Additional files to run the vignette can be found at zenodo repository [here](https://zenodo.org/records/14983368).
+For this vignette tutorial, we provide a ST example dataset of mice subjected to tibia osteotomy obtained from [Rios et al., 2024](https://insight.jci.org/articles/view/176802#BIBL). Additional files to run the vignette can be found at zenodo repository [here](https://doi.org/10.5281/zenodo.14983368).
 
 # Analysis Approaches
-SpatialTime supports different strategies for delimiting spatial reference spots by: 1) manually defining references spots using the packages built-in Shiny App; 2) selecting single cell types based on cluster identities, or 3) manually defining references lines using imaging *softwares* such as Fiji/ImageJ. For tutorial purposes, we will first show how to select spots using the three different approaches possible. Then, we'll present how to investigate and visualize gene expression and module score across these established distance gradients.
+SpatialFlux supports different strategies for delimiting spatial reference spots by: 1) manually defining references spots using the packages built-in Shiny App; 2) selecting single cell types based on cluster identities, or 3) manually defining references lines using imaging *softwares* such as Fiji/ImageJ. For tutorial purposes, we will first show how to select spots using the three different approaches possible. Then, we'll present how to investigate and visualize gene expression and module score across these established distance gradients.
 
 ## 1. Individual Spots Selection
 1.1 First, import required libraries and the processed Seurat object.
@@ -47,7 +39,7 @@ SpatialTime supports different strategies for delimiting spatial reference spots
 # Libraries
 library(Seurat)
 library(tidyverse)
-library(SpatialTime)
+library(SpatialFlux)
 library(shiny)
 library(plotly)
 library(monocle3)
@@ -106,7 +98,7 @@ Barcode: CAACTATATCGAATGC-1_1, Cluster: Cartilage, Coordinates: (372.8783, -147.
 After spots selection, click ```Export Selected Spots``` and close the Shiny app. The ```id``` parameter have to include ```seurat_obj@meta.data``` column name that contains cell types ID's for better visualization in the shiny app. 
 
 
-By importing the desired cluster coordinates and the above reference spots selected in the shiny app, SpatialTime distance gradient can be calculated using ```CoordMerge``` function by specifying the path of the coord files and cell cluster name. Additionally, import the reference spots coordinates using ```ShinySpots``` function. For example, using the cluster labeled as ```Woven```, it follows:
+By importing the desired cluster coordinates and the above reference spots selected in the shiny app, SpatialFlux distance gradient can be calculated using ```CoordMerge``` function by specifying the path of the coord files and cell cluster name. Additionally, import the reference spots coordinates using ```ShinySpots``` function. For example, using the cluster labeled as ```Woven```, it follows:
 
 ```sh
 #Import coordinates of cluster and reference spotsof interest 
@@ -115,7 +107,7 @@ target <- CoordMerge("coord_out/", pattern = "Woven")
 # Import reference spot coordinates 
 ref <- ShinySpots(demo, coord_file = "selected_spots_random.csv") # image below can be generated by changing the coord_file="selected_spots.csv"
 
-# Calculate SpatialTime between cluster and reference
+# Calculate SpatialFlux between cluster and reference
 ```sh
 sp <- SpatialShinyTime(target, ref)
 sp
@@ -132,7 +124,7 @@ gradient_vis +
 ![](../images/figs1/selection_gradient.png)
 
 ```sh
-# Calculate gradient distance values and add Spatialtime (st) values into metadata
+# Calculate gradient distance values and add SpatialFlux (st) values into metadata
 gradient_calc <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", return_obj = T)
 View(vis@meta.data)
 
@@ -151,7 +143,7 @@ As an alternative to manually reference spot selection, entire annotated cluster
 # Libraries
 library(Seurat)
 library(tidyverse)
-library(SpatialTime)
+library(SpatialFlux)
 library(monocle3)
 library(reshape2)
 
@@ -171,7 +163,7 @@ target <- CoordMerge("coord_out", pattern = "Woven")
 # Selecting clusters to be used as reference ----
 ref <- CoordMerge("coord_out", pattern = "Cartilage")
 
-# Calculate SpatialTime between clusters of interest ----
+# Calculate SpatialFlux between clusters of interest ----
 sp  <- Spatial2Time(target, ref)
 sp
 
@@ -193,7 +185,7 @@ gradient_vis  +
 gradient_calc <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", return_obj = T)
 View(vis@meta.data)
 
-# Subset out spots not selected as target tissue where spatialtime (st) value were not calculated
+# Subset out spots not selected as target tissue where spatialflux (st) value were not calculated
 gradient_calc <- subset(gradient_calc, subset = st != 0)
 
 # Continue to "Gene Expression Assessment & Visualization" section below
@@ -207,7 +199,7 @@ Fiji is a broadly used open source scientific image processing tool. Fiji allows
 # Required packages
 library(Seurat)
 library(tidyverse)
-library(SpatialTime)
+library(SpatialFlux)
 library(monocle3)
 library(reshape2)
 
@@ -227,7 +219,7 @@ tissue <- c("Cartilage","Woven")
 
 data <- SpatialCalc("Fiji_C1.csv", factor = 0.10067452, colors = colors, tissue = tissue)
 ```
-3.3 At this step, SpatialTime distance are ready to be calculated. First, import your cluster type coordinates as reference and calculate the spots distances against other cluster. 
+3.3 At this step, SpatialFlux distance are ready to be calculated. First, import your cluster type coordinates as reference and calculate the spots distances against other cluster. 
 ```sh
 # Calculate minimum spots distances from reference line of interest
 file <- read.csv("coord_out/Woven_coordinates.csv")
@@ -235,15 +227,15 @@ sp <- SpatialTime(data, reference = "Cartilage", compare = file)
 sp
 ```
 
-3.4 SpatialTime distance gradient can be assessed using:
+3.4 SpatialFlux distance gradient can be assessed using:
 ```sh
 gradient_vis <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", return_obj = F)
 gradient_vis
 ```
 ![](../images/figs3/gradient_lineref.png)
-3.5 Adding spatialtime values into metadata and subsetting only cells with st values:
+3.5 Adding spatialflux values into metadata and subsetting only cells with st values:
 ```sh
-# Visualization spatialtime gradient ----
+# Visualization spatialflux gradient ----
 gradient_calc <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", return_obj = T)
 gradient_calc <- subset(gradient_calc, subset = st != 0)
 ```
@@ -274,7 +266,7 @@ By using ```return_obj = T``` Seurat object is returned allowing for individuals
 ```sh
 # Calculate pseudotime
 ps <- PseudoM3Time(gradient_calc, assay = "SCT", values = "st", return_obj = T)
-GeneVis(file = ps, column = c("Col2a1", "Ihh","Sox9"), span = 0.5, signal = "gene")
+GeneVis(file = ps, column = c("Acan", "Col2a1", "Bglap"), span = 0.5, signal = "gene")
 ```
 
 ![](../images/plots/genes_curve_plot.png)
@@ -297,12 +289,12 @@ GeneVis(file = module, column = c("module1", "module2"), signal = "pathway", spa
 
 
 # Spatial Transcriptomics Visium HD
-SpatialTime package also supports 10x genomics Visium HD analysis allowing user to calculate distance gradients in a true single cell resolution. The SpatialTime rationale for HD assays remains with minor modifications from standard cluster-based or image-based approaches. For instance:
+SpatialFlux package also supports 10x genomics Visium HD analysis allowing user to calculate distance gradients in a true single cell resolution. The SpatialFlux rationale for HD assays remains with minor modifications from standard cluster-based or image-based approaches. For instance:
 
 ```sh
 library(Seurat)
 library(tidyverse)
-library(SpatialTime)
+library(SpatialFlux)
 library(monocle3)
 library(reshape2)
 
@@ -325,7 +317,7 @@ For Fiji image-based analysis:
 ```sh
 library(Seurat)
 library(tidyverse)
-library(SpatialTime)
+library(SpatialFlux)
 library(monocle3)
 library(reshape2)
 
@@ -347,10 +339,10 @@ gradient_vis
 ```
 
 ## Attention
-Despite support for 10x genomics Visium HD protocol, SpatialTime calculation might take considerable computing time and resources due to true single cell resolution datasets size and complexity. In these cases we highly recommend having at disposal at least 8 CPU cores and 64gb RAM.
+Despite support for 10x genomics Visium HD protocol, SpatialFlux calculation might take considerable computing time and resources due to true single cell resolution datasets size and complexity. In these cases we highly recommend having at disposal at least 8 CPU cores and 64gb RAM.
 
 ## Monocle Usage
-SpatialTime package was originally conceived using ```monocle``` for spatialvalues calculation mainly to its reliability and heatmap plotting facility. However, monocle's newer versions such as ```monocle3``` brought series of performance and analysis enhancements. Thus, we additionally provide a monocle wrapper function that allows equivalent spatialtime calculation in the standard SpatialTime pipeline. For instance:
+SpatialFlux package was originally conceived using ```monocle``` for spatialvalues calculation mainly to its reliability and heatmap plotting facility. However, monocle's newer versions such as ```monocle3``` brought series of performance and analysis enhancements. Thus, we additionally provide a monocle wrapper function that allows equivalent spatialflux calculation in the standard SpatialFlux pipeline. For instance:
 
 ```sh
 library(monocle)
@@ -386,7 +378,7 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] SpatialTime_0.0.0.9000 testthat_3.2.0         devtools_2.4.5         usethis_2.2.2         
+[1] SpatialFlux_0.0.0.9000 testthat_3.2.0         devtools_2.4.5         usethis_2.2.2         
 
 loaded via a namespace (and not attached):
   [1] RcppAnnoy_0.0.21       splines_4.3.2          later_1.3.1            DDRTree_0.1.5          tibble_3.2.1          
