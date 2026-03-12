@@ -7,7 +7,7 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/towerlab/SpatialFlux)
 <!-- badges: stop -->
 
-<img src="man/figures/logo.tif" align="right" width = "225" height="225" alt="" /> 
+<img src="man/figures/logo.svg" align="right" width = "225" height="225" alt="" /> 
 
 ### Introduction
 Spatial transcriptomics (ST) represents a powerful approach for assessing the gene expression landscape across tissues at single cell resolution. However, limitations regarding low sampling, histology differences among samples and lack of comprehensive visualization approaches hinders ST broader applications and analysis. SpatialFlux, an R programming package, was developed aiming to tackle these challenges by calculating a distance-based gradient between spatial spots using Euclidean distances. 
