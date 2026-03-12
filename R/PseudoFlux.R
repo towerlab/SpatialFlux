@@ -1,4 +1,4 @@
-#' PseudoTime
+#' PseudoFlux
 #' @param file Seurat object with module annotation
 #' @param assay Seurat Assay
 #' @param min_expr Minimum gene expression
@@ -14,7 +14,7 @@
 #' @import fs
 #' @export
 
-PseudoTime <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 3,
+PseudoFlux <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 3,
                        mean_expr = 0.1, pvalue = 0.05, cores = 1, return_obj = F) {
 
   if (!is(file, "Seurat")) {stop("File is not a Seurat object.")}
@@ -62,7 +62,7 @@ PseudoTime <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 3
 
 }
 
-#' Pseudo2Time
+#' Pseudo2Flux
 #' @param file Seurat object with module annotation
 #' @param assay Seurat Assay
 #' @param min_expr Minimum gene expression
@@ -79,7 +79,7 @@ PseudoTime <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 3
 #' @import fs
 #' @export
 
-Pseudo2Time <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 3,
+Pseudo2Flux <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 3,
                         mean_expr = 0.1, pvalue = 0.05, cores = 1, return_obj = F) {
 
   if (!is(file, "Seurat")) {
@@ -133,10 +133,10 @@ Pseudo2Time <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 
 
 }
 
-#' PseudoM3Time
+#' PseudoM3Flux
 #' @param file Seurat object
 #' @param assay Assays to choose
-#' @param values Use pseudotime or spatialtime
+#' @param values Use pseudotime or spatialflux
 #' @param q_cutoff q value cutoff
 #' @param morans_cutoff morans values cutoff
 #' @param cores CPU cores
@@ -149,7 +149,7 @@ Pseudo2Time <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 
 #' @import monocle3
 #' @export
 
-PseudoM3Time <- function(file = NULL, assay = c("RNA", "SCT"), values = c("pt", "st"), q_cutoff = 0.01, morans_cutoff = 0.05, cores = 4, return_obj = T) {
+PseudoM3Flux <- function(file = NULL, assay = c("RNA", "SCT"), values = c("pt", "st"), q_cutoff = 0.01, morans_cutoff = 0.05, cores = 4, return_obj = T) {
 
   if (!is(file, "Seurat")) {
     stop("File is not a Seurat object.")
@@ -205,7 +205,7 @@ PseudoM3Time <- function(file = NULL, assay = c("RNA", "SCT"), values = c("pt", 
 }
 
 
-#' Pseudo2TimeHD
+#' Pseudo2FluxHD
 #' @param file Seurat object with module annotation
 #' @param assay Seurat Assay
 #' @param min_expr Minimum gene expression
@@ -222,7 +222,7 @@ PseudoM3Time <- function(file = NULL, assay = c("RNA", "SCT"), values = c("pt", 
 #' @import fs
 #' @export
 
-Pseudo2TimeHD <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 3,
+Pseudo2FluxHD <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 3,
                           mean_expr = 0.1, pvalue = 0.05, cores = 1, return_obj = F) {
 
   if (!is(file, "Seurat")) {
@@ -278,7 +278,7 @@ Pseudo2TimeHD <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells 
 
 
 #' GeneGet
-#' @param var Pheatmap file from Pseudo2Time
+#' @param var Pheatmap file from Pseudo2Flux
 #' @param n_clusters Number of clusters from heatmap
 #' @details
 #' Get genes present in each clusters identified from heatmap.

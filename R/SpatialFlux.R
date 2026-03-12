@@ -1,4 +1,4 @@
-#' SpatialTime
+#' SpatialFlux
 #' @param file file containing clusters coordinates scaled by image factor
 #' @param reference cluster as reference
 #' @param compare clusters spots to compare against reference
@@ -8,7 +8,7 @@
 #' @import tidyverse
 #' @export
 
-SpatialTime <- function(file = NULL, reference = NULL, compare = NULL) {
+SpatialFlux <- function(file = NULL, reference = NULL, compare = NULL) {
 
   if (is.null(file)) {
     stop("Input data not found.")
@@ -42,7 +42,7 @@ SpatialTime <- function(file = NULL, reference = NULL, compare = NULL) {
 }
 
 
-#' SpatialTime
+#' SpatialFluxHD
 #' @param file file containing clusters coordinates scaled by image factor
 #' @param reference cluster as reference
 #' @param compare clusters spots to compare against reference
@@ -52,7 +52,7 @@ SpatialTime <- function(file = NULL, reference = NULL, compare = NULL) {
 #' @import tidyverse
 #' @export
 
-SpatialTimeHD <- function(file = NULL, reference = NULL, compare = NULL) {
+SpatialFluxHD <- function(file = NULL, reference = NULL, compare = NULL) {
 
   if (is.null(file)) {
     stop("Input data not found.")

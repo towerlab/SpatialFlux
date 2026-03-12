@@ -1,4 +1,4 @@
-#' Spatial2Time
+#' Spatial2Flux
 #' @param file Seurat's cluster coordinates as input
 #' @param file2 Seurat's reference cluster coordinates as input
 #' @param id Export coordinates files
@@ -9,7 +9,7 @@
 #' @import tidyverse
 #' @export
 
-Spatial2Time <- function(file = NULL, file2 = NULL, id = NULL) {
+Spatial2Flux <- function(file = NULL, file2 = NULL, id = NULL) {
 
   columns <- c("row","col","imagerow","imagecol")
 
@@ -41,7 +41,7 @@ Spatial2Time <- function(file = NULL, file2 = NULL, id = NULL) {
 
 
 
-#' Spatial2TimeHD
+#' Spatial2FluxHD
 #' @param file Seurat's cluster coordinates as input
 #' @param file2 Seurat's reference cluster coordinates as input
 #' @param id Export coordinates files
@@ -52,7 +52,7 @@ Spatial2Time <- function(file = NULL, file2 = NULL, id = NULL) {
 #' @import tidyverse
 #' @export
 
-Spatial2TimeHD <- function(file = NULL, file2 = NULL, id = NULL) {
+Spatial2FluxHD <- function(file = NULL, file2 = NULL, id = NULL) {
 
   columns <- c("x","y")
 
