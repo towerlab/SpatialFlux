@@ -76,13 +76,13 @@ app <- ShinySelection(demo, id = "Tissue")
 app
 ```
 
-![](../images/figs1/shinyapp_noselection.png)
+![](../images/plots/shinyapp_noselection.png)
 
 
 To navigate trough the app, use ```shift+left click``` to move around the sample. Use the ```left click``` to select spatial spots to be used as reference and ```ctrl + left click``` to unselect the spots. Users can scroll with the mouse wheel or use the  ```+``` and ```-``` signs in the top right corner to zoom in or zoom out, respectively. In the example below, we have manually selected spatial spots representing the central fracture line of the bone. 
 
 
-![](../images/figs1/shinyapp_selection.png)
+![](../images/plots/shinyapp_selection.png)
 
 For each spot selected, information on spot barcode, cluster it belongs to and XY coordinates are displayed in the Shiny App UI as below:
 
@@ -121,7 +121,7 @@ gradient_vis <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", retur
 gradient_vis +
   theme(aspect.ratio = ratio)
 ```
-![](../images/figs1/selection_gradient.png)
+![](../images/plots/selection_gradient.png)
 
 ```sh
 # Calculate gradient distance values and add SpatialFlux (st) values into metadata
@@ -178,7 +178,7 @@ ratio <- ScaleRatio(demo) # Adjust image scale
 gradient_vis  +
  theme(aspect.ratio = ratio)
 ```
-![](../images/figs2/cluster_gradient.png)
+![](../images/plots/cluster_gradient.png)
 
 ```sh
 # Add st values into metadata
@@ -232,7 +232,7 @@ sp
 gradient_vis <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", return_obj = F)
 gradient_vis
 ```
-![](../images/figs3/gradient_lineref.png)
+![](../images/plots/gradient_lineref.png)
 3.5 Adding spatialflux values into metadata and subsetting only cells with st values:
 ```sh
 # Visualization spatialflux gradient ----
@@ -351,7 +351,7 @@ ps <- Pseudo2Time(gradient_calc, assay = "SCT", return_obj = F)
 p <- plot_pseudotime_heatmap(ps, num_clusters = 2, cores = 2, show_rownames = F, return_heatmap = T)
 p
 ```
-![](../images/figs3/monocle.png)
+![](../images/plots/monocle.png)
 For downstream analysis, such as module scores, object ```seurat_obj$meta.data``` should be returned instead of a expression matrix. Thus, set ```return_obj = T```:
 ```sh
 ps <- Pseudo2Time(fracture, assay = "SCT", return_obj = T)
