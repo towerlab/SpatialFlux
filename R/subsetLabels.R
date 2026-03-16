@@ -8,7 +8,6 @@
 #' @details
 #' This function allows the selection of clusters of interest and exporting their coordinates
 #'
-#' @import tidyverse
 #' @export
 
 subsetLabels <- function(file = NULL, cluster = NULL, export.all = F, slice.n = "slice1", dir.out = "coord_out") {

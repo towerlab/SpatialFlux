@@ -9,7 +9,6 @@
 #' @param image_opacity H&E background opacity
 #'
 #' SpatialVis
-#' @import tidyverse
 #' @export
 #'
 #' @details
@@ -61,7 +60,6 @@ SpatialVis <- function(file = NULL, st.calc = NULL, spatial.by = c("abs", "rel")
 #' @param se Standard error
 #' @param line_thickness Curve plot line thickness
 #'
-#' @import tidyverse
 #' @export
 #'
 #' @details
@@ -108,7 +106,6 @@ GeneVis <- function(file = NULL, column = NULL, signal = c("gene", "pathway"), s
 #' ScaleRatio
 #' @param object Seurat object input
 #'
-#' @import tidyverse
 #' @export
 #'
 #' @details
@@ -135,7 +132,6 @@ ScaleRatio <- function(object = NULL) {
 #' @param labels_row Display labels row names
 #' @param hm_color Heatmap colors
 #'
-#' @import pheatmap
 #' @export
 #'
 #' @details

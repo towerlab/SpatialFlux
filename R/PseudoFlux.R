@@ -75,7 +75,6 @@ PseudoFlux <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 3
 #' @details
 #' This function calculates and adds coordinates values to each line drawn in data frame.
 #'
-#' @import tidyverse
 #' @import fs
 #' @export
 
@@ -145,8 +144,6 @@ Pseudo2Flux <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 
 #' @details
 #' This function calculates pseudotime using Monocle3
 #'
-#' @import tidyverse
-#' @import monocle3
 #' @export
 
 PseudoM3Flux <- function(file = NULL, assay = c("RNA", "SCT"), values = c("pt", "st"), q_cutoff = 0.01, morans_cutoff = 0.05, cores = 4, return_obj = T) {
@@ -218,7 +215,6 @@ PseudoM3Flux <- function(file = NULL, assay = c("RNA", "SCT"), values = c("pt", 
 #' @details
 #' This function calculates and adds coordinates values to each line drawn in data frame.
 #'
-#' @import tidyverse
 #' @import fs
 #' @export
 
@@ -283,7 +279,6 @@ Pseudo2FluxHD <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells 
 #' @details
 #' Get genes present in each clusters identified from heatmap.
 #'
-#' @import tidyverse
 #' @export
 
 GeneGet <- function(var = NULL, n_clusters = 2) {

@@ -6,7 +6,6 @@
 #' @details
 #' This function calculates and adds coordinates values to each line drawn in data frame.
 #'
-#' @import tidyverse
 #' @export
 
 Spatial2Flux <- function(file = NULL, file2 = NULL, id = NULL) {
@@ -49,7 +48,6 @@ Spatial2Flux <- function(file = NULL, file2 = NULL, id = NULL) {
 #' @details
 #' This function calculates and adds coordinates values to each line drawn in data frame.
 #'
-#' @import tidyverse
 #' @export
 
 Spatial2FluxHD <- function(file = NULL, file2 = NULL, id = NULL) {
@@ -84,16 +82,15 @@ Spatial2FluxHD <- function(file = NULL, file2 = NULL, id = NULL) {
 
 
 
-#' SpatialShinyTime
+#' SpatialShinyFlux
 #' @param file Seurat's cluster coordinates as input
 #' @param file2 Seurat coordinates of reference spots selected in ShinyApp
 #' @param id Don't remember this
 #' @details
 #' This function calculates euclidean distances of reference spots selected in ShinyApp against cluster coordinates of interest
-#' @import tidyverse
 #' @export
 #'
-SpatialShinyTime <- function(file = NULL, file2 = NULL, id = NULL) {
+SpatialShinyFlux <- function(file = NULL, file2 = NULL, id = NULL) {
 
   columns <- c("row","col","imagerow","imagecol")
 

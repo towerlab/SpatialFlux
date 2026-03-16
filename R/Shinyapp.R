@@ -8,7 +8,6 @@
 #'
 #' @import shiny
 #' @import plotly
-#' @import tidyverse
 #' @import umap
 #' @export
 
@@ -204,7 +203,6 @@ ShinySelection <- function(file = NULL, id = NULL, file.name = "selected_spots_r
 #' @details
 #' This function allows coordinates extraction from specific spots barcodes previously selected in ShinySelection function
 #'
-#' @import tidyverse
 #' @export
 
 ShinySpots <- function(seurat_obj = NULL, coord_file = NULL, slice.n = "slice1") {

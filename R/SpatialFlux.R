@@ -5,7 +5,6 @@
 #' @details
 #' Calculates euclidean distance of Fiji reference lines and cluster establishing a distance gradient
 #'
-#' @import tidyverse
 #' @export
 
 SpatialFlux <- function(file = NULL, reference = NULL, compare = NULL) {
@@ -49,7 +48,6 @@ SpatialFlux <- function(file = NULL, reference = NULL, compare = NULL) {
 #' @details
 #' Calculates euclidean distance of Fiji reference lines and cluster establishing a distance gradient for Spatial HD
 #'
-#' @import tidyverse
 #' @export
 
 SpatialFluxHD <- function(file = NULL, reference = NULL, compare = NULL) {
