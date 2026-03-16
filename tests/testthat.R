@@ -9,7 +9,6 @@
 library(testthat)
 library(usethis)
 library(devtools)
-library(SpatialTime)
-library(tidyverse)
+library(SpatialFlux)
 
-test_check("SpatialTime")
+test_check("SpatialFlux")
