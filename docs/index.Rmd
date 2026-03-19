@@ -32,7 +32,7 @@ For this vignette tutorial, we provide a ST example dataset of mice subjected to
 # Analysis Approaches
 SpatialFlux supports different strategies for delimiting spatial reference spots by: 1) manually defining references spots using the packages built-in Shiny App; 2) selecting single cell types based on cluster identities, or 3) manually defining references lines using imaging *softwares* such as Fiji/ImageJ. For tutorial purposes, we will first show how to select spots using the three different approaches possible. Then, we'll present how to investigate and visualize gene expression and module score across these established distance gradients.
 
-## 1. Individual Spots Selection
+## 1. Individual Spots Selection approach
 1.1 First, import required libraries and the processed Seurat object.
 ```sh
 # Libraries
@@ -132,7 +132,7 @@ gradient_calc <- subset(gradient_calc, subset = st != 0)
 # Continue to in "Gene Expression Assessment & Visualization" section below
 ```
 
-## 2. Cluster selection based approach
+## 2. Cluster selection approach
 
 As an alternative to manually reference spot selection, entire annotated clusters can be used as the reference instead.
 
@@ -181,7 +181,7 @@ gradient_vis  +
 ```sh
 # Add st values into metadata
 gradient_calc <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", return_obj = T)
-View(vis@meta.data)
+View(gradient_calc@meta.data)
 
 # Subset out spots not selected as target tissue where spatialflux (st) value were not calculated
 gradient_calc <- subset(gradient_calc, subset = st != 0)
@@ -189,7 +189,7 @@ gradient_calc <- subset(gradient_calc, subset = st != 0)
 # Continue to "Gene Expression Assessment & Visualization" section below
 ```
 
-## 3. Fiji/ImageJ based approach
+## 3. Fiji/ImageJ approach
 Fiji is a broadly used open source scientific image processing tool. Fiji allows drawing the reference lines of interest and exporting each delineated pixel as an XY coordinates later used for euclidean distance calculation. Fiji can be downloaded [here](https://imagej.net/software/fiji/) and a brief Fiji tutorial on how draw and export references lines can be found [here](https://dimitrisokolowskei.notion.site/Fiji-Tutorial-22db3341bbaf8001807ee08e8ab58771?source=copy_link).
 
 3.1 First, import your Seurat ST object using ```readRDS()``` function. Then, we proceed using ```subsetLabels()``` which allows us to export ST clusters coordinates as excel sheets.
