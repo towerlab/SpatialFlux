@@ -206,7 +206,7 @@ demo <- readRDS("fracture_demo.rds")
 View(demo@meta.data)
 
 # Export clusters coordinates 
-subsetLabels("fracture_demo.rds", cluster = c("Cartilage","Woven"), slice.n = "slice1", dir.out = "coord_out")
+subset2Labels(demo, cluster = c("Cartilage", "HypCH", "Woven"), export.all = F, dir.out = "coord_out")
 ```
 
 3.2 Import Fiji XY coordinates previously prepared. Furthermore, we need to match the reference line colors to their respective tissue/region names. Be aware that the tissue names must exist in your Seurat object identities. Notice that each slice image have its own ```factor``` value that can be found in the .json file in each 10x output folder. Then, by running ```SpatialCalc()``` each XY coordinate can be transformed accordingly to the slice factor.  
@@ -220,15 +220,17 @@ data <- SpatialCalc("Fiji_C1.csv", factor = 0.10067452, colors = colors, tissue 
 3.3 At this step, SpatialFlux distance are ready to be calculated. First, import your cluster type coordinates as reference and calculate the spots distances against other cluster. 
 ```sh
 # Calculate minimum spots distances from reference line of interest
-file <- read.csv("coord_out/Woven_coordinates.csv")
+file <- read.csv("coord_out/Woven_slice1_coordinates.csv")
 sp <- SpatialFlux(data, reference = "Cartilage", compare = file)
 sp
 ```
 
 3.4 SpatialFlux distance gradient can be assessed using:
 ```sh
+ratio <- ScaleRatio(demo)
+
 gradient_vis <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", return_obj = F)
-gradient_vis
+gradient_vis + theme(aspect.ratio = ratio)
 ```
 ![](../images/plots/gradient_lineref.png)
 3.5 Adding spatialflux values into metadata and subsetting only cells with st values:
