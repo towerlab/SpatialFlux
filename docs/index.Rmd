@@ -240,7 +240,7 @@ gradient_calc <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", retu
 gradient_calc <- subset(gradient_calc, subset = st != 0)
 ```
 # Gene Expression Assessement & Visualization
-In this step, independently of spots selection approach use, st values should be included in ```demo@meta.data```. Consequently, pseudotime can be calculated and gene expression analysis visualized as heatmap across distance gradient. For example: 
+In this step, independently of spots selection approach use, st values should be included in ```demo@meta.data```. Consequently, pseudotime can be calculated and gene expression analysis visualized as heatmap across distance gradient. For instance: 
 ```sh
 # Calculate pseudotime and visualize genes differentialy expressed across distance gradient
 ps <- PseudoM3Flux(gradient_calc, assay = "SCT", values = "st", return_obj = F)
@@ -310,7 +310,11 @@ sp <- Spatial2FluxHD(other, ref)
 
 gradient_vis <- SpatialVis(hd, sp, spatial.by = "rel", slice = "slice1", return_obj = F) 
 gradient_vis
-...
+
+gradient_calc <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", return_obj = T)
+gradient_calc <- subset(gradient_calc, subset = st != 0)
+
+# Continue as in "Gene Expression & Visualization"
 ```
 
 For Fiji image-based analysis:
@@ -335,7 +339,11 @@ sp
 
 gradient_vis <- SpatialVis(hd, sp, spatial.by = "rel", slice = "slice1", return_obj = F)
 gradient_vis
-...
+
+gradient_calc <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", return_obj = T)
+gradient_calc <- subset(gradient_calc, subset = st != 0)
+
+# Continue as in "Gene Expression & Visualization"
 ```
 
 ## Attention

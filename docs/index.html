@@ -1736,7 +1736,9 @@ gradient_calc &lt;- subset(gradient_calc, subset = st != 0)</code></pre>
 <p>In this step, independently of spots selection approach use, st
 values should be included in <code>demo@meta.data</code>. Consequently,
 pseudotime can be calculated and gene expression analysis visualized as
-heatmap across distance gradient. For example:</p>
+heatmap across distance gradient. Be aware that before calculating
+pseudotime, root not needs to be selected. Any random root can be
+choosen for proceeding with the analysis. For instance:</p>
 <pre class="sh"><code># Calculate pseudotime and visualize genes differentialy expressed across distance gradient
 ps &lt;- PseudoM3Flux(gradient_calc, assay = &quot;SCT&quot;, values = &quot;st&quot;, return_obj = F)
 hm &lt;- gradient_heatmap(ps, rownames = F)</code></pre>
