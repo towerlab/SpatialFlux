@@ -1,7 +1,7 @@
 Package: SpatialFlux
 Title: Spatial transcriptomics distance gradient analysis
 Version: 1.0.0
-Author: Dimitri Sokolowskei <dimitri.sokolowskei@utsouthwestern.edu> 
+Author: Dimitri Sokolowskei [aut, cre] <dimitri.sokolowskei@utsouthwestern.edu>, Alex J. Trostle [aut] <alexander.trostle@utsouthwestern.edu>, Achira Shah [aut] <achira.shah@utsouthwestern.edu>, Robert J. Tower [aut] <robert.tower@utsouthwestern.edu> 
 Maintainer: Dimitri Sokolowskei <dimitri.sokolowskei@utsouthwestern.edu> 
 Description: Spatial transcriptomics distance gradient analysis
 License: GPL (>= 3)
