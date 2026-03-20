@@ -6,7 +6,6 @@
 #' @details
 #' This function calculates and adds coordinates values to each line drawn in data frame.
 #'
-#' @import fs
 #' @export
 
 CoordMerge <- function(files = "", pattern = "") {
@@ -33,7 +32,6 @@ CoordMerge <- function(files = "", pattern = "") {
 #' @details
 #' This function calculates and adds coordinates values to each line drawn in data frame for Spatial HD.
 #'
-#' @import fs
 #' @export
 
 CoordMergeHD <- function(files = "", pattern = "") {

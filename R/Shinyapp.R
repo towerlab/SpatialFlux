@@ -6,9 +6,7 @@
 #' @details
 #' Shiny app for manual spots selection and coordinates export.
 #'
-#' @import shiny
-#' @import plotly
-#' @import umap
+
 #' @export
 
 ShinySelection <- function(file = NULL, id = NULL, file.name = "selected_spots_random.csv", angle = -90) {
