@@ -1,5 +1,5 @@
 Package: SpatialFlux
-Title: Spatial transcriptomics distance gradient analysis
+Title: SpatialFlux: An R package for distance gradient analysis in spatial transcriptomics
 Version: 1.0.0
 Author: Dimitri Sokolowskei [aut, cre] <dimitri.sokolowskei@utsouthwestern.edu>, Alex J. Trostle [aut] <alexander.trostle@utsouthwestern.edu>, Achira Shah [aut] <achira.shah@utsouthwestern.edu>, Robert J. Tower [aut] <robert.tower@utsouthwestern.edu> 
 Maintainer: Dimitri Sokolowskei <dimitri.sokolowskei@utsouthwestern.edu> 
@@ -10,15 +10,5 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Config/testthat/edition: 3
 Imports:
-    devtools,
-    testthat,
-    usethis,
-    fs,
-    shiny,
-    plotly,
-    umap,
-    pheatmap,
-    readr,
-    methods
+ 
 Suggests:
-    Seurat
