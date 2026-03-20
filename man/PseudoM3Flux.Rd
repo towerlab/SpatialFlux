@@ -11,6 +11,7 @@ PseudoM3Flux(
   q_cutoff = 0.01,
   morans_cutoff = 0.05,
   cores = 4,
+  pr_root = "Y_1",
   return_obj = T
 )
 }
@@ -26,6 +27,8 @@ PseudoM3Flux(
 \item{morans_cutoff}{morans values cutoff}
 
 \item{cores}{CPU cores}
+
+\item{pr_root}{Select random root}
 
 \item{return_obj}{Return full object}
 }
