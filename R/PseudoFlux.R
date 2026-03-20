@@ -139,6 +139,7 @@ Pseudo2Flux <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 
 #' @param q_cutoff q value cutoff
 #' @param morans_cutoff morans values cutoff
 #' @param cores CPU cores
+#' @param pr_root Select random root
 #' @param return_obj Return full object
 #'
 #' @details
@@ -146,7 +147,7 @@ Pseudo2Flux <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 
 #'
 #' @export
 
-PseudoM3Flux <- function(file = NULL, assay = c("RNA", "SCT"), values = c("pt", "st"), q_cutoff = 0.01, morans_cutoff = 0.05, cores = 4, return_obj = T) {
+PseudoM3Flux <- function(file = NULL, assay = c("RNA", "SCT"), values = c("pt", "st"), q_cutoff = 0.01, morans_cutoff = 0.05, cores = 4, pr_root = "Y_1", return_obj = T) {
 
   if (!is(file, "Seurat")) {
     stop("File is not a Seurat object.")
@@ -164,7 +165,7 @@ PseudoM3Flux <- function(file = NULL, assay = c("RNA", "SCT"), values = c("pt", 
   cds <- reduce_dimension(cds, reduction_method = "UMAP")
   cds <- cluster_cells(cds)
   cds <- learn_graph(cds)
-  cds <- order_cells(cds, reduction_method = "UMAP", verbose = F)
+  cds <- order_cells(cds, reduction_method = "UMAP", root_pr_nodes = pr_root, verbose = F)
 
   cds@colData$Pseudotime <- pseudotime(cds)
 
