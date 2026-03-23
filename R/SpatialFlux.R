@@ -31,13 +31,13 @@ SpatialFlux <- function(file = NULL, reference = NULL, compare = NULL) {
     stop("id parameter is missing")
   }
 
-  st_calc <- tissue_to %>%
+  sf_calc <- tissue_to %>%
     rowwise() %>%
-    mutate(st_abs = min(sqrt((imagerow - tissue_from[[paste0(reference, "_row")]]) ^ 2 + (imagecol - tissue_from[[paste0(reference, "_col")]]) ^ 2))) %>%
+    mutate(sf_abs = min(sqrt((imagerow - tissue_from[[paste0(reference, "_row")]]) ^ 2 + (imagecol - tissue_from[[paste0(reference, "_col")]]) ^ 2))) %>%
     ungroup() %>%
-    mutate(st_rel = (st_abs - min(st_abs)) / (max(st_abs) - min(st_abs)))
+    mutate(sf_rel = (sf_abs - min(sf_abs)) / (max(sf_abs) - min(sf_abs)))
 
-  return(st_calc)
+  return(sf_calc)
 }
 
 
@@ -79,11 +79,11 @@ SpatialFluxHD <- function(file = NULL, reference = NULL, compare = NULL) {
     stop("id parameter is missing")
   }
 
-  st_calc <- tissue_to %>%
+  sf_calc <- tissue_to %>%
     rowwise() %>%
-    mutate(st_abs = min(sqrt((imagerow - tissue_from[[paste0(reference, "_row")]]) ^ 2 + (imagecol - tissue_from[[paste0(reference, "_col")]]) ^ 2))) %>%
+    mutate(sf_abs = min(sqrt((imagerow - tissue_from[[paste0(reference, "_row")]]) ^ 2 + (imagecol - tissue_from[[paste0(reference, "_col")]]) ^ 2))) %>%
     ungroup() %>%
-    mutate(st_rel = (st_abs - min(st_abs)) / (max(st_abs) - min(st_abs)))
+    mutate(sf_rel = (sf_abs - min(sf_abs)) / (max(sf_abs) - min(sf_abs)))
 
-  return(st_calc)
+  return(sf_calc)
 }

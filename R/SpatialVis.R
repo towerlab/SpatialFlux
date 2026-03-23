@@ -1,6 +1,6 @@
 #' SpatialVis
 #' @param file Seurat Object as Input
-#' @param st.calc Spatialtime values
+#' @param sf.calc Spatialtime values
 #' @param spatial.by absolute or relative values
 #' @param slice Select tissue slice
 #' @param remove.na subset only tissue of spatialtime
@@ -14,27 +14,27 @@
 #' @details
 #' This function calculates and adds coordinates values to each line drawn in data frame.
 
-SpatialVis <- function(file = NULL, st.calc = NULL, spatial.by = c("abs", "rel"), slice = "slice1", remove.na = F, return_obj = T,
+SpatialVis <- function(file = NULL, sf.calc = NULL, spatial.by = c("abs", "rel"), slice = "slice1", remove.na = F, return_obj = T,
                        pt_size = 1, image_opacity = 1) {
 
-  if (is.null(file) || is.null(st.calc)) {
-    stop("Both 'file' and 'st.calc' must be provided.")
+  if (is.null(file) || is.null(sf.calc)) {
+    stop("Both 'file' and 'sf.calc' must be provided.")
   }
 
   spatial.by <- match.arg(spatial.by)
 
   myBarcode <- Cells(file)
-  TissueID <- st.calc[match(myBarcode, st.calc$barcode), ]
+  TissueID <- sf.calc[match(myBarcode, sf.calc$barcode), ]
 
   if (spatial.by == "abs") {
 
-    file$st <- TissueID$st_abs
+    file$sf <- TissueID$sf_abs
   } else if (spatial.by == "rel") {
 
-    file$st <- TissueID$st_rel
+    file$sf <- TissueID$sf_rel
   }
 
-  file$st[is.na(file$st)] <- 0
+  file$sf[is.na(file$sf)] <- 0
 
   if (return_obj == T) {
     return(file)
@@ -42,11 +42,11 @@ SpatialVis <- function(file = NULL, st.calc = NULL, spatial.by = c("abs", "rel")
 
   if (remove.na) {
 
-    sub <- subset(file, subset = st != 0)
-    SpatialFeaturePlot(sub, features = "st", images = slice, image.alpha = image_opacity, pt.size.factor = pt_size)
+    sub <- subset(file, subset = sf != 0)
+    SpatialFeaturePlot(sub, features = "sf", images = slice, image.alpha = image_opacity, pt.size.factor = pt_size)
 
   } else {
-    SpatialFeaturePlot(file, features = "st", images = slice, image.alpha = image_opacity, pt.size.factor = pt_size)
+    SpatialFeaturePlot(file, features = "sf", images = slice, image.alpha = image_opacity, pt.size.factor = pt_size)
   }
 
 }
@@ -86,16 +86,16 @@ GeneVis <- function(file = NULL, column = NULL, signal = c("gene", "pathway"), s
 
   df <- file@meta.data %>%
     mutate(x = Cells(file)) %>%
-    select("x","st")
+    select("x","sf")
 
   q <- cbind(df, genes)
 
-  df_long <- melt(q, id.vars = c("x", "st"))
+  df_long <- melt(q, id.vars = c("x", "sf"))
 
-  p <- ggplot(df_long, aes(x = st, y = value, color = variable))
+  p <- ggplot(df_long, aes(x = sf, y = value, color = variable))
 
   for (var in unique(df_long$variable)) {
-    p <- p + geom_smooth(data = subset(df_long, variable == var), aes(x = st, y = value),
+    p <- p + geom_smooth(data = subset(df_long, variable == var), aes(x = sf, y = value),
                          method = "loess", span = span, se = se, linewidth = line_thickness, method.args=list(degree=0,span=span_arg)) + theme_classic()
   }
 

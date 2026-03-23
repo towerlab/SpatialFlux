@@ -39,10 +39,10 @@ PseudoFlux <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 3
   HSMM <- reduceDimension(HSMM, max_components=2, auto_param_selection = F)
   HSMM <- orderCells(HSMM, reverse=FALSE)
 
-  HSMM@phenoData@data[["Pseudotime"]]=HSMM@phenoData@data[["st"]]
+  HSMM@phenoData@data[["Pseudotime"]]=HSMM@phenoData@data[["sf"]]
   HSMM_expressed_genes <- row.names(subset(fData(HSMM), num_cells_expressed >= min_cells))
   HSMM_filtered <- HSMM[HSMM_expressed_genes,]
-  diff_test_res <- differentialGeneTest(HSMM_filtered, fullModelFormulaStr="~sm.ns(st)", cores = cores)
+  diff_test_res <- differentialGeneTest(HSMM_filtered, fullModelFormulaStr="~sm.ns(sf)", cores = cores)
 
   diff=diff_test_res[,c("gene_short_name", "pval", "qval","use_for_ordering")]
   diff=diff[diff$pval < pvalue, ]
@@ -105,10 +105,10 @@ Pseudo2Flux <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 
   HSMM <- reduceDimension(HSMM, max_components=2, reduction_method = "DDRTree", auto_param_selection = F)
   HSMM <- orderCells(HSMM, reverse=FALSE)
 
-  HSMM@phenoData@data[["Pseudotime"]]=HSMM@phenoData@data[["st"]]
+  HSMM@phenoData@data[["Pseudotime"]]=HSMM@phenoData@data[["sf"]]
   HSMM_expressed_genes <- row.names(subset(fData(HSMM), num_cells_expressed >= min_cells))
   HSMM_filtered <- HSMM[HSMM_expressed_genes,]
-  diff_test_res <- differentialGeneTest(HSMM_filtered, fullModelFormulaStr="~sm.ns(st)", cores = cores)
+  diff_test_res <- differentialGeneTest(HSMM_filtered, fullModelFormulaStr="~sm.ns(sf)", cores = cores)
 
   diff=diff_test_res[,c("gene_short_name", "pval", "qval","use_for_ordering")]
   diff=diff[diff$pval < pvalue, ]
@@ -142,7 +142,7 @@ Pseudo2Flux <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 
 #' This function calculates pseudotime using Monocle3
 #'
 
-PseudoM3Flux <- function(file = NULL, assay = c("RNA", "SCT"), values = c("pt", "st"), q_cutoff = 0.01, morans_cutoff = 0.05, cores = 4, pr_root = "Y_1", return_obj = T) {
+PseudoM3Flux <- function(file = NULL, assay = c("RNA", "SCT"), values = c("pt", "sf"), q_cutoff = 0.01, morans_cutoff = 0.05, cores = 4, pr_root = "Y_1", return_obj = T) {
 
   if (!is(file, "Seurat")) {
     stop("File is not a Seurat object.")
@@ -166,7 +166,7 @@ PseudoM3Flux <- function(file = NULL, assay = c("RNA", "SCT"), values = c("pt", 
 
   if (return_obj) {
 
-    cds@colData$Pseudotime <- cds@colData$st
+    cds@colData$Pseudotime <- cds@colData$sf
     file@meta.data[["Pseudotime"]] <- as.data.frame(cds@colData$Pseudotime)
     colnames(file@meta.data)[colnames(file@meta.data) == "Pseudotime$cds@colData$Pseudotime"] <- "Pseudotime"
 
@@ -182,14 +182,14 @@ PseudoM3Flux <- function(file = NULL, assay = c("RNA", "SCT"), values = c("pt", 
     pt.matrix <- t(apply(pt.matrix,1,function(x){smooth.spline(x,df=3)$y}))
     pt.matrix <- t(apply(pt.matrix,1,function(x){(x-mean(x))/sd(x)}))
 
-  } else if (values == "st") {
-    pt.matrix <- exprs(cds)[match(genes,rownames(rowData(cds))),order(cds@colData$st)]
+  } else if (values == "sf") {
+    pt.matrix <- exprs(cds)[match(genes,rownames(rowData(cds))),order(cds@colData$sf)]
     pt.matrix <- t(apply(pt.matrix,1,function(x){smooth.spline(x,df=3)$y}))
     pt.matrix <- t(apply(pt.matrix,1,function(x){(x-mean(x))/sd(x)}))
 
   } else {
 
-    stop("values must be equal to pt or st")
+    stop("values must be equal to pt or sf")
 
   }
 
@@ -244,10 +244,10 @@ Pseudo2FluxHD <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells 
   HSMM <- reduceDimension(HSMM, max_components=2, reduction_method = "DDRTree", auto_param_selection = F)
   HSMM <- orderCells(HSMM, reverse=FALSE)
 
-  HSMM@phenoData@data[["Pseudotime"]]=HSMM@phenoData@data[["st"]]
+  HSMM@phenoData@data[["Pseudotime"]]=HSMM@phenoData@data[["sf"]]
   HSMM_expressed_genes <- row.names(subset(fData(HSMM), num_cells_expressed >= min_cells))
   HSMM_filtered <- HSMM[HSMM_expressed_genes,]
-  diff_test_res <- differentialGeneTest(HSMM_filtered, fullModelFormulaStr="~sm.ns(st)", cores = cores)
+  diff_test_res <- differentialGeneTest(HSMM_filtered, fullModelFormulaStr="~sm.ns(sf)", cores = cores)
 
   diff=diff_test_res[,c("gene_short_name", "pval", "qval","use_for_ordering")]
   diff=diff[diff$pval < pvalue, ]

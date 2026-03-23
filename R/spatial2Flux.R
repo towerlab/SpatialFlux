@@ -29,13 +29,13 @@ Spatial2Flux <- function(file = NULL, file2 = NULL, id = NULL) {
     mutate(barcode = ...1) %>%
     select(imagerow, imagecol, barcode)
 
-  st_calc <- tissue_to %>%
+  sf_calc <- tissue_to %>%
     rowwise() %>%
-    mutate(st_abs = min(sqrt((imagerow - tissue_from[["imagerow"]]) ^ 2 + (imagecol - tissue_from[["imagecol"]]) ^ 2))) %>%
+    mutate(sf_abs = min(sqrt((imagerow - tissue_from[["imagerow"]]) ^ 2 + (imagecol - tissue_from[["imagecol"]]) ^ 2))) %>%
     ungroup() %>%
-    mutate(st_rel = (st_abs - min(st_abs)) / (max(st_abs) - min(st_abs)))
+    mutate(sf_rel = (sf_abs - min(sf_abs)) / (max(sf_abs) - min(sf_abs)))
 
-  return(st_calc)
+  return(sf_calc)
 }
 
 
@@ -71,13 +71,13 @@ Spatial2FluxHD <- function(file = NULL, file2 = NULL, id = NULL) {
     mutate(barcode = ...1) %>%
     select(x, y, barcode)
 
-  st_calc <- tissue_to %>%
+  sf_calc <- tissue_to %>%
     rowwise() %>%
-    mutate(st_abs = min(sqrt((x - tissue_from[["x"]]) ^ 2 + (y - tissue_from[["y"]]) ^ 2))) %>%
+    mutate(sf_abs = min(sqrt((x - tissue_from[["x"]]) ^ 2 + (y - tissue_from[["y"]]) ^ 2))) %>%
     ungroup() %>%
-    mutate(st_rel = (st_abs - min(st_abs)) / (max(st_abs) - min(st_abs)))
+    mutate(sf_rel = (sf_abs - min(sf_abs)) / (max(sf_abs) - min(sf_abs)))
 
-  return(st_calc)
+  return(sf_calc)
 }
 
 
@@ -111,11 +111,11 @@ SpatialShinyFlux <- function(file = NULL, file2 = NULL, id = NULL) {
     mutate(barcode = rownames(file2)) %>%
     select(imagerow, imagecol, barcode)
 
-  st_calc <- tissue_to %>%
+  sf_calc <- tissue_to %>%
     rowwise() %>%
-    mutate(st_abs = min(sqrt((imagerow - tissue_from[["imagerow"]]) ^ 2 + (imagecol - tissue_from[["imagecol"]]) ^ 2))) %>%
+    mutate(sf_abs = min(sqrt((imagerow - tissue_from[["imagerow"]]) ^ 2 + (imagecol - tissue_from[["imagecol"]]) ^ 2))) %>%
     ungroup() %>%
-    mutate(st_rel = (st_abs - min(st_abs)) / (max(st_abs) - min(st_abs)))
+    mutate(sf_rel = (sf_abs - min(sf_abs)) / (max(sf_abs) - min(sf_abs)))
 
-  return(st_calc)
+  return(sf_calc)
 }
