@@ -140,7 +140,7 @@ Pseudo2Flux <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 
 #'
 #' @details
 #' This function calculates pseudotime using Monocle3
-#'
+#' @export
 
 PseudoM3Flux <- function(file = NULL, assay = c("RNA", "SCT"), values = c("pt", "sf"), q_cutoff = 0.01, morans_cutoff = 0.05, cores = 4, pr_root = "Y_1", return_obj = T) {
 
