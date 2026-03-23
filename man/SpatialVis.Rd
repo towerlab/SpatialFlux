@@ -6,7 +6,7 @@
 \usage{
 SpatialVis(
   file = NULL,
-  st.calc = NULL,
+  sf.calc = NULL,
   spatial.by = c("abs", "rel"),
   slice = "slice1",
   remove.na = F,
@@ -18,7 +18,7 @@ SpatialVis(
 \arguments{
 \item{file}{Seurat Object as Input}
 
-\item{st.calc}{Spatialtime values}
+\item{sf.calc}{Spatialtime values}
 
 \item{spatial.by}{absolute or relative values}
 

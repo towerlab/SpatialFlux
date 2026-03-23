@@ -7,7 +7,7 @@
 PseudoM3Flux(
   file = NULL,
   assay = c("RNA", "SCT"),
-  values = c("pt", "st"),
+  values = c("pt", "sf"),
   q_cutoff = 0.01,
   morans_cutoff = 0.05,
   cores = 4,
