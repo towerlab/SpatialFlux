@@ -43,6 +43,7 @@ library(shiny)
 library(plotly)
 library(monocle3)
 library(reshape2)
+library(pheatmap)
 
 # set.seed for reproducibilty 
 set.seed(12345)
@@ -122,12 +123,12 @@ gradient_vis +
 ![](../images/plots/selection_gradient.png)
 
 ```sh
-# Calculate gradient distance values and add SpatialFlux (st) values into metadata
+# Calculate gradient distance values and add SpatialFlux (sf) values into metadata
 gradient_calc <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", return_obj = T)
 View(vis@meta.data)
 
 # Remove spots outside regions of interest with a calculated distance of 0 to improve visualization
-gradient_calc <- subset(gradient_calc, subset = st != 0)
+gradient_calc <- subset(gradient_calc, subset = sf != 0)
 
 # Continue to in "Gene Expression Assessment & Visualization" section below
 ```
@@ -179,12 +180,12 @@ gradient_vis  +
 ![](../images/plots/cluster_gradient.png)
 
 ```sh
-# Add st values into metadata
+# Add sf values into metadata
 gradient_calc <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", return_obj = T)
 View(gradient_calc@meta.data)
 
-# Subset out spots not selected as target tissue where spatialflux (st) value were not calculated
-gradient_calc <- subset(gradient_calc, subset = st != 0)
+# Subset out spots not selected as target tissue where spatialflux (sf) value were not calculated
+gradient_calc <- subset(gradient_calc, subset = sf != 0)
 
 # Continue to "Gene Expression Assessment & Visualization" section below
 ```
@@ -233,17 +234,17 @@ gradient_vis <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", retur
 gradient_vis + theme(aspect.ratio = ratio)
 ```
 ![](../images/plots/gradient_lineref.png)
-3.5 Adding spatialflux values into metadata and subsetting only cells with st values:
+3.5 Adding spatialflux values into metadata and subsetting only cells with sf values:
 ```sh
 # Visualization spatialflux gradient ----
 gradient_calc <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", return_obj = T)
-gradient_calc <- subset(gradient_calc, subset = st != 0)
+gradient_calc <- subset(gradient_calc, subset = sf != 0)
 ```
 # Gene Expression Assessement & Visualization
-In this step, independently of spots selection approach use, st values should be included in ```demo@meta.data```. Consequently, pseudotime can be calculated and gene expression analysis visualized as heatmap across distance gradient. For instance: 
+In this step, independently of spots selection approach use, sf values should be included in ```demo@meta.data```. Consequently, pseudotime can be calculated and gene expression analysis visualized as heatmap across distance gradient. For instance: 
 ```sh
 # Calculate pseudotime and visualize genes differentialy expressed across distance gradient
-ps <- PseudoM3Flux(gradient_calc, assay = "SCT", values = "st", return_obj = F)
+ps <- PseudoM3Flux(gradient_calc, assay = "SCT", values = "sf", return_obj = F)
 hm <- gradient_heatmap(ps, rownames = F)
 ```
 ![](../images/plots/heatmap_oficial.png)
@@ -265,7 +266,7 @@ Ankrd23             1       Ankrd23
 By using ```return_obj = T``` Seurat object is returned allowing for individuals gene expression visualization across distances. Additionally, module score pathways can be assessed as follows:   
 ```sh
 # Calculate pseudotime
-ps <- PseudoM3Flux(gradient_calc, assay = "SCT", values = "st", return_obj = T)
+ps <- PseudoM3Flux(gradient_calc, assay = "SCT", values = "sf", return_obj = T)
 GeneVis(file = ps, column = c("Acan", "Col2a1", "Bglap"), span = 0.5, signal = "gene")
 ```
 
@@ -312,7 +313,7 @@ gradient_vis <- SpatialVis(hd, sp, spatial.by = "rel", slice = "slice1", return_
 gradient_vis
 
 gradient_calc <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", return_obj = T)
-gradient_calc <- subset(gradient_calc, subset = st != 0)
+gradient_calc <- subset(gradient_calc, subset = sf != 0)
 
 # Continue as in "Gene Expression & Visualization"
 ```
@@ -341,7 +342,7 @@ gradient_vis <- SpatialVis(hd, sp, spatial.by = "rel", slice = "slice1", return_
 gradient_vis
 
 gradient_calc <- SpatialVis(demo, sp, spatial.by = "rel", slice = "slice1", return_obj = T)
-gradient_calc <- subset(gradient_calc, subset = st != 0)
+gradient_calc <- subset(gradient_calc, subset = sf != 0)
 
 # Continue as in "Gene Expression & Visualization"
 ```
