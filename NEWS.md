@@ -1,3 +1,3 @@
-# SpatialTime (development version)
+# SpatialFlux V1.0.0
 
-* Initial CRAN submission.
+Package initial and major release.  
