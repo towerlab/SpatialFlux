@@ -1,10 +1,28 @@
+#' @importFrom dplyr mutate select arrange filter rowwise ungroup case_when
+#' @importFrom readr read_csv
+#' @importFrom jsonlite fromJSON
+#' @importFrom plotly plot_ly layout config event_register event_data
+#' @importFrom shiny renderPlotly plotlyOutput
+#' @importFrom grDevices colorRampPalette rainbow
+#' @importFrom RColorBrewer brewer.pal
+#' @importFrom pheatmap pheatmap
+#' @importFrom Seurat Idents SpatialFeaturePlot GetTissueCoordinates
+#' @importFrom monocle newCellDataSet reduceDimension orderCells differentialGeneTest
+NULL
+
+
+
+
+
 #' CoordMerge
 #' @param files Seurat object as Input
 #' @param pattern Cluster names in Idents
-#'
+#' @importFrom stringr str_sort
+#' @importFrom stringr str_detect
 #'
 #' @details
 #' This function calculates and adds coordinates values to each line drawn in data frame.
+#'
 #'
 #' @export
 

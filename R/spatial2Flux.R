@@ -1,3 +1,19 @@
+#' @importFrom dplyr mutate select arrange filter rowwise ungroup case_when
+#' @importFrom readr read_csv
+#' @importFrom jsonlite fromJSON
+#' @importFrom plotly plot_ly layout config event_register event_data
+#' @importFrom shiny renderPlotly plotlyOutput
+#' @importFrom grDevices colorRampPalette rainbow
+#' @importFrom RColorBrewer brewer.pal
+#' @importFrom pheatmap pheatmap
+#' @importFrom Seurat Idents SpatialFeaturePlot GetTissueCoordinates
+#' @import monocle3
+NULL
+
+
+
+
+
 #' Spatial2Flux
 #' @param file Seurat's cluster coordinates as input
 #' @param file2 Seurat's reference cluster coordinates as input

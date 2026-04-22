@@ -1,3 +1,16 @@
+#' @importFrom dplyr mutate select arrange filter rowwise ungroup case_when
+#' @importFrom readr read_csv
+#' @importFrom jsonlite fromJSON
+#' @importFrom plotly plot_ly layout config event_register event_data
+#' @importFrom shiny renderPlotly plotlyOutput
+#' @importFrom grDevices colorRampPalette rainbow
+#' @importFrom RColorBrewer brewer.pal
+#' @importFrom pheatmap pheatmap
+#' @importFrom Seurat Idents SpatialFeaturePlot GetTissueCoordinates
+#' @importFrom monocle newCellDataSet reduceDimension orderCells differentialGeneTest
+NULL
+
+
 #' SpatialVis
 #' @param file Seurat Object as Input
 #' @param sf.calc Spatialtime values
@@ -60,15 +73,25 @@ SpatialVis <- function(file = NULL, sf.calc = NULL, spatial.by = c("abs", "rel")
 #' @param se Standard error
 #' @param line_thickness Curve plot line thickness
 #'
+#' @import ggplot2
+#' @import monocle3
+#' @importFrom Seurat FetchData
+#' @importFrom Seurat Cells
+#'
 #' @export
+#'
 #'
 #' @details
 #' Visualization of genes of interest using reference line as starting point
 #'
 GeneVis <- function(file = NULL, column = NULL, signal = c("gene", "pathway"), span = 1, span_arg = 0.75, se = F, line_thickness = 1) {
 
-  if (is.null(file) || class(file) != "Seurat") {
-    stop("Error. File not found or format not supported.")
+  if (is.null(file)) {
+    stop("Error. File not found.")
+  }
+
+  if (is(file, "SeuratObject")) {
+    stop("Format not supported.")
   }
 
   if (is.null(column)) {
@@ -113,8 +136,12 @@ GeneVis <- function(file = NULL, column = NULL, signal = c("gene", "pathway"), s
 
 ScaleRatio <- function(object = NULL) {
 
-  if (is.null(object) || class(object) != "Seurat") {
-    stop("Error. File not found or format not supported.")
+  if (is.null(object)) {
+    stop("Error. File not found.")
+  }
+
+  if (is(object, "SeuratObject")) {
+    stop("Format not supported.")
   }
 
   coord <- GetTissueCoordinates(object = object)

@@ -6,6 +6,7 @@
 #' @details
 #' Shiny app for manual spots selection and coordinates export.
 #'
+#'@import shiny
 
 #' @export
 

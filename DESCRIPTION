@@ -10,5 +10,18 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Config/testthat/edition: 3
 Imports: 
+    dplyr,
     fs,
-    readr
+    ggplot2,
+    jsonlite,
+    methods,
+    monocle,
+    monocle3,
+    pheatmap,
+    plotly,
+    RColorBrewer,
+    readr,
+    reshape2,
+    Seurat,
+    shiny,
+    stringr

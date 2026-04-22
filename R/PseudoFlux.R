@@ -1,3 +1,18 @@
+#' @importFrom dplyr mutate select arrange filter rowwise ungroup case_when
+#' @importFrom readr read_csv
+#' @importFrom jsonlite fromJSON
+#' @importFrom plotly plot_ly layout config event_register event_data
+#' @importFrom shiny renderPlotly plotlyOutput
+#' @importFrom grDevices colorRampPalette rainbow
+#' @importFrom RColorBrewer brewer.pal
+#' @importFrom pheatmap pheatmap
+#' @importFrom Seurat Idents SpatialFeaturePlot GetTissueCoordinates
+#' @import monocle3
+NULL
+
+
+
+
 #' PseudoFlux
 #' @param file Seurat object with module annotation
 #' @param assay Seurat Assay
@@ -8,6 +23,8 @@
 #' @param cores number of CPU cores to use
 #' @param return_obj plot monocle heatmap
 #'
+#' @import monocle3
+#' @export
 #' @details
 #' This function calculates and adds coordinates values to each line drawn in data frame.
 #'
@@ -69,6 +86,9 @@ PseudoFlux <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 3
 #' @param pvalue pvalue threashold to filter genes out
 #' @param cores number of CPU cores to use
 #' @param return_obj plot monocle heatmap
+#'
+#' @import monocle3
+#' @export
 #'
 #' @details
 #' This function calculates and adds coordinates values to each line drawn in data frame.
@@ -137,6 +157,8 @@ Pseudo2Flux <- function(file = NULL, assay = "RNA", min_expr = 0.1, min_cells = 
 #' @param cores CPU cores
 #' @param pr_root Select random root
 #' @param return_obj Return full object
+#'
+#' @import monocle3
 #'
 #' @details
 #' This function calculates pseudotime using Monocle3
