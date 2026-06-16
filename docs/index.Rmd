@@ -355,7 +355,8 @@ gradient_calc <- subset(gradient_calc, subset = sf != 0)
 ```
 
 ## Attention
-Despite support for 10x genomics Visium HD protocol, SpatialFlux calculation might take considerable computing time and resources due to true single cell resolution datasets size and complexity. In these cases we highly recommend having at disposal at least 8 CPU cores and 64gb RAM.
+Despite support for 10x genomics Visium HD protocol, SpatialFlux calculation might take considerable computing time and resources due to true single cell resolution datasets size and complexity. Below, we provide a brief benchmark of computing time as number of cells increases. Overall, we highly recommend having at disposal at least 6 CPU cores and 64gb RAM.
+![](../images/plots/benchmark_cellsn.jpeg)
 
 ## Monocle Usage
 SpatialFlux package was originally conceived using ```monocle``` for spatialvalues calculation mainly to its reliability and heatmap plotting facility. However, monocle's newer versions such as ```monocle3``` brought series of performance and analysis enhancements. Thus, we additionally provide a monocle wrapper function that allows equivalent spatialflux calculation in the standard SpatialFlux pipeline. For instance:
